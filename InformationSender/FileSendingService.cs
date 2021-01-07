@@ -9,7 +9,7 @@ public static class SendFileToServer
     private static string password = "12345";
     public static int Send(string fileName)
     {
-        var connectionInfo = new ConnectionInfo(host, "sftp", new PasswordAuthenticationMethod(username, password));
+        var connectionInfo = new ConnectionInfo(host, 22, "sftp", new PasswordAuthenticationMethod(username, password));
         // Upload File
         using (var sftp = new SftpClient(connectionInfo))
         {
