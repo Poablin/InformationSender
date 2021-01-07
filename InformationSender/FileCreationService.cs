@@ -20,6 +20,7 @@ namespace InformationSender
         }
 
         private string OutputPath { get; set; }
+
         public List<string> FilesReadyToSend { get; private set; }
 
         private FileModel[] FileList { get; }
