@@ -12,12 +12,12 @@ namespace InformationSender
         {
             DocumentModel model = new DocumentModel();
 
-            XElement xmlTree1 = new XElement("File",
+            var xmlTree1 = new XElement("File",
             new XElement("Owner", 1),
             new XElement("DocType", 2)
             );
 
-            XElement xmlTree2 =
+            var xmlTree2 =
             new XElement("FileInfo",
                 new XElement("Filename", 3),
                 new XElement("InvoiceNumber", 4),
@@ -32,15 +32,12 @@ namespace InformationSender
                 new XElement("TotalAmount", 13)
             );
 
-            var testtree1 = new XElement("File");
-            var testtree2 = new XElement("File");
-
            var doc = new XDocument(xmlTree1);
             doc.Root.Add(xmlTree2);
 
             //XmlWriterSettings settings = new XmlWriterSettings();
             //settings.OmitXmlDeclaration = true;
-            StringWriter sw = new StringWriter();
+            var sw = new StringWriter();
             using (XmlWriter xw = XmlWriter.Create(@"C:\Users\krist\Downloads\Test.xml"))
             {
                 doc.Save(xw);
