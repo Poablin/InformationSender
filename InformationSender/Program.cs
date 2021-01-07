@@ -13,7 +13,7 @@ namespace InformationSender
             var FileCreationService = new FileCreationService(fileInfoList);
             FileCreationService.CreateFilesFromFileInfo();
 
-            SendFileToServer.Send(FileCreationService.FilesReadyToSendPath.ToString());
+            SendFileToServer.Send(FileCreationService.FilesReadyToSend.ToString());
         }
     }
 }

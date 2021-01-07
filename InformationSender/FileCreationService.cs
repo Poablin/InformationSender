@@ -16,11 +16,11 @@ namespace InformationSender
 
         public FileCreationService(FileModel[] fileList)
         {
-            FilesReadyToSendPath = new List<string>();
+            FilesReadyToSend = new List<string>();
             FileList = fileList;
         }
 
-        public List<string> FilesReadyToSendPath { get; private set; }
+        public List<string> FilesReadyToSend { get; private set; }
 
         private FileModel[] FileList { get; }
 
@@ -62,7 +62,7 @@ namespace InformationSender
 
                     WriteXmlFile(owner, doc);
                     CreateZipFile(owner);
-                    FilesReadyToSendPath.Add(OutputPath + owner + ".zip");
+                    FilesReadyToSend.Add(OutputPath + owner + ".zip");
                     Directory.Delete(OutputPath + owner, true);
                 }
             }
