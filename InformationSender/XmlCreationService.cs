@@ -11,29 +11,23 @@ namespace InformationSender
     {
         public XmlCreationService(DocumentModel[] fileList)
         {
-            OwnerList = new List<string>();
             FileList = fileList;
         }
-        private List<string> OwnerList { get; set; }
+
+        private Random Random = new Random();
         private DocumentModel[] FileList { get; set; }
 
         public void CreateXmlFilesFromFileInfo()
         {
-            var random = new Random();
+            var ownerList = FileList.Select(x => x.Owner).Distinct();
 
-            foreach (var file in FileList)
+            foreach (var owner in ownerList)
             {
-                if (!OwnerList.Contains(file.Owner))
-                {
-                    OwnerList.Add(file.Owner);
-                }
-            }
+                var doc = new XDocument(new XElement("File"));
 
-            var doc = new XDocument(new XElement("File"));
-            foreach (var owner in OwnerList)
-            {
                 doc.Root.Add(new XElement("Owner", owner));
                 doc.Root.Add(new XElement("DocType", "BOF"));
+
 
                 var filesToAddIntoXml = FileList.Where(x => x.Owner == owner);
 
@@ -57,7 +51,7 @@ namespace InformationSender
                     doc.Root.Add(fileElement);
                 }
                 var sw = new StringWriter();
-                using (XmlWriter xw = XmlWriter.Create(@"E:\Test\" + random.Next(999999) + ".xml"))
+                using (XmlWriter xw = XmlWriter.Create(@"E:\Test\" + Random.Next(999999) + ".xml"))
                 {
                     doc.Save(xw);
                 }
