@@ -20,6 +20,7 @@ namespace InformationSender
         }
 
         private string OutputPath { get; }
+        private string DirPath { get; set; }
         public List<string> FilesReadyToSend { get; }
         private FileModel[] FileList { get; }
 
@@ -31,7 +32,8 @@ namespace InformationSender
 
                 foreach (var owner in ownerList)
                 {
-                    Directory.CreateDirectory(OutputPath + owner);
+                    DirPath = OutputPath + owner;
+                    Directory.CreateDirectory(DirPath);
 
                     var doc = new XDocument(new XElement("File"));
                     doc.Root?.Add(new XElement("Owner", owner));
@@ -56,13 +58,13 @@ namespace InformationSender
                                 new XElement("DueDate", fileInfo.DueDate),
                                 new XElement("TotalAmount", fileInfo.TotalAmount));
                         doc.Root?.Add(fileElement);
-                        File.WriteAllText(OutputPath + owner + "\\" + fileInfo.Filename, "");
+                        File.WriteAllText(DirPath + "\\" + fileInfo.Filename, "");
                     }
 
-                    WriteXmlFile(owner, doc);
-                    CreateZipFile(owner);
-                    FilesReadyToSend.Add(OutputPath + owner + ".zip");
-                    Directory.Delete(OutputPath + owner, true);
+                    WriteXmlFile(doc);
+                    CreateZipFile();
+                    FilesReadyToSend.Add(DirPath + ".zip");
+                    Directory.Delete(DirPath, true);
                 }
             }
             catch (Exception e)
@@ -71,12 +73,12 @@ namespace InformationSender
             }
         }
 
-        private void WriteXmlFile(string owner, XDocument doc)
+        private void WriteXmlFile(XDocument doc)
         {
             try
             {
                 var sw = new StringWriter();
-                using (var xw = XmlWriter.Create(OutputPath + owner + "\\" + _random.Next(999999) + ".xml"))
+                using (var xw = XmlWriter.Create(DirPath + "\\" + _random.Next(999999) + ".xml"))
                 {
                     doc.Save(xw);
                 }
@@ -89,11 +91,11 @@ namespace InformationSender
             }
         }
 
-        private void CreateZipFile(string owner)
+        private void CreateZipFile()
         {
             try
             {
-                ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
+                ZipFile.CreateFromDirectory(DirPath, DirPath + ".zip");
             }
             catch (Exception e)
             {
