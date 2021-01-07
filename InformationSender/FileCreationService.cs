@@ -64,18 +64,6 @@ namespace InformationSender
             }
         }
 
-        private void CreateZipFile(string owner)
-        {
-            try
-            {
-                ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
         private void WriteXmlFile(string owner, XDocument doc)
         {
             try
@@ -86,6 +74,18 @@ namespace InformationSender
                     doc.Save(xw);
                 }
                 sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void CreateZipFile(string owner)
+        {
+            try
+            {
+                ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
             }
             catch (Exception e)
             {
