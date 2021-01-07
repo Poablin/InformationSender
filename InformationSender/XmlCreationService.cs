@@ -24,10 +24,8 @@ namespace InformationSender
             foreach (var owner in ownerList)
             {
                 var doc = new XDocument(new XElement("File"));
-
                 doc.Root.Add(new XElement("Owner", owner));
                 doc.Root.Add(new XElement("DocType", "BOF"));
-
 
                 var filesToAddIntoXml = FileList.Where(x => x.Owner == owner);
 
