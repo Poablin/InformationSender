@@ -19,8 +19,8 @@ namespace InformationSender
                 fileInfo.Filename = "2" + Random.Next(0000000, 9999999) + ".pdf";
                 fileInfo.InvoiceNumber = "1" + Random.Next(000000, 99999);
                 //Husk Mod10 på CustomerNumber
-                fileInfo.CustomerNumber = $"005{fileInfo.InvoiceNumber}6";
-                fileInfo.KID = "2345676";
+                fileInfo.CustomerNumber = "000001";
+                fileInfo.KID = $"005{fileInfo.InvoiceNumber}6";
                 fileInfo.Name = RandomString(10);
                 fileInfo.Addr1 = RandomString(6);
                 fileInfo.ZipCode = Random.Next(0000, 9999).ToString();

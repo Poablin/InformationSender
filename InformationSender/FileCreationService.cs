@@ -43,6 +43,7 @@ namespace InformationSender
                                 new XElement("Filename", fileInfo.Filename),
                                 new XElement("InvoiceNumber", fileInfo.InvoiceNumber),
                                 new XElement("CustomerNumber", fileInfo.CustomerNumber),
+                                new XElement("KID", fileInfo.KID),
                                 new XElement("Name", fileInfo.Name),
                                 new XElement("Addr1", fileInfo.Addr1),
                                 new XElement("ZipCode", fileInfo.ZipCode),
