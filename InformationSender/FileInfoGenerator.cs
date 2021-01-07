@@ -31,7 +31,7 @@ namespace InformationSender
                 date = date.AddDays(30);
                 fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 fileInfo.TotalAmount = random.Next(99999);
-                fileInfo.FileLocation = @"C:\Users\krist\Downloads\test";
+                fileInfo.FileLocation = @"C:\";
                 fileInfo.BatchID = 001;
 
                 fileInfoList[i] = fileInfo;
