@@ -6,19 +6,20 @@ namespace InformationSender
 {
     class XmlCreationService
     {
-        public XmlCreationService(DocumentModel[] model)
+        public XmlCreationService(string owner, DocumentModel[] model)
         {
+            Owner = owner;
             Model = model;
         }
-
+        private string Owner { get; set; }
         private DocumentModel[] Model { get; set; }
 
         public void CreateXml()
         {
             var rootElement =
             new XElement("File",
-                new XElement("Owner", "Owner"),
-                new XElement("DocType", "DocType")
+                new XElement("Owner", Owner),
+                new XElement("DocType", "BOF/inkassodokument")
             );
 
             foreach (var file in Model)

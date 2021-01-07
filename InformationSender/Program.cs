@@ -8,7 +8,7 @@
             var modelList = new DocumentModel[1];
             modelList[0] = model;
 
-            var creationService = new XmlCreationService(modelList);
+            var creationService = new XmlCreationService("10002" ,modelList);
             creationService.CreateXml();
         }
     }
