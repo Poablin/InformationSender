@@ -14,7 +14,10 @@ namespace InformationSender
 
             XElement xmlTree1 = new XElement("File",
             new XElement("Owner", 1),
-            new XElement("DocType", 2),
+            new XElement("DocType", 2)
+            );
+
+            XElement xmlTree2 =
             new XElement("FileInfo",
                 new XElement("Filename", 3),
                 new XElement("InvoiceNumber", 4),
@@ -27,10 +30,13 @@ namespace InformationSender
                 new XElement("IssueDate", 11),
                 new XElement("DueDate", 12),
                 new XElement("TotalAmount", 13)
-                )
             );
 
-            XDocument doc = new XDocument(xmlTree1);
+            var testtree1 = new XElement("File");
+            var testtree2 = new XElement("File");
+
+           var doc = new XDocument(xmlTree1);
+            doc.Root.Add(xmlTree2);
 
             //XmlWriterSettings settings = new XmlWriterSettings();
             //settings.OmitXmlDeclaration = true;
