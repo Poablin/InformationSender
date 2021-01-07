@@ -1,4 +1,5 @@
 ﻿using Renci.SshNet;
+using System;
 
 namespace InformationSender
 {
@@ -12,18 +13,25 @@ namespace InformationSender
         private static string password = "12345";
         public static int Send(string fileName)
         {
-            var connectionInfo = new ConnectionInfo(host, 22, "sftp", new PasswordAuthenticationMethod(username, password));
-            // Upload File
-            using (var sftp = new SftpClient(connectionInfo))
+            try
             {
-
-                sftp.Connect();
-                //sftp.ChangeDirectory("/MyFolder");
-                using (var uplfileStream = System.IO.File.OpenRead(fileName))
+                var connectionInfo = new ConnectionInfo(host, 22, "sftp", new PasswordAuthenticationMethod(username, password));
+                // Upload File
+                using (var sftp = new SftpClient(connectionInfo))
                 {
-                    sftp.UploadFile(uplfileStream, fileName, true);
+
+                    sftp.Connect();
+                    //sftp.ChangeDirectory("/MyFolder");
+                    using (var uplfileStream = System.IO.File.OpenRead(fileName))
+                    {
+                        sftp.UploadFile(uplfileStream, fileName, true);
+                    }
+                    sftp.Disconnect();
                 }
-                sftp.Disconnect();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
             return 0;
         }

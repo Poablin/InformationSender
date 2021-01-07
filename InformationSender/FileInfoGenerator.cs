@@ -20,7 +20,8 @@ namespace InformationSender
                 fileInfo.InvoiceNumber = "1" + Random.Next(00000, 99999);
                 fileInfo.CustomerNumber = "000001";
                 //Husk Mod10 på KID
-                fileInfo.KID = $"005{fileInfo.InvoiceNumber}6";
+                var mod10 = Mod10($"005{fileInfo.InvoiceNumber}");
+                fileInfo.KID = $"005{fileInfo.InvoiceNumber}{mod10}";
                 fileInfo.Name = RandomString(10);
                 fileInfo.Addr1 = RandomString(6);
                 fileInfo.ZipCode = Random.Next(0000, 9999).ToString();
@@ -53,6 +54,24 @@ namespace InformationSender
             var start = new DateTime(1990, 1, 1);
             var range = (DateTime.Today.AddDays(-30) - start).Days;
             return start.AddDays(Random.Next(range));
+        }
+
+       private static int Mod10(string kid)
+        {
+            bool isOne = false;
+            int controlNumber = 0;
+            foreach (char number in kid.Reverse())
+            {
+                var intNumber = int.Parse(number.ToString());
+                var sum = isOne ? intNumber : 2 * intNumber;
+                if (sum > 9)
+                {
+                    sum = (sum % 10) + 1;
+                }
+                isOne = !isOne;
+                controlNumber += sum;
+            }
+            return (10 - (controlNumber % 10)) % 10 == 0 ? 0 : 10 - (controlNumber % 10);
         }
     }
 }
