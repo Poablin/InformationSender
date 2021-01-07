@@ -6,13 +6,13 @@ namespace InformationSender
 {
     class XmlCreationService
     {
-        public XmlCreationService(string owner, DocumentModel[] model)
+        public XmlCreationService(string owner, DocumentModel[] fileList)
         {
             Owner = owner;
-            Model = model;
+            FileList = fileList;
         }
         private string Owner { get; set; }
-        private DocumentModel[] Model { get; set; }
+        private DocumentModel[] FileList { get; set; }
 
         public void CreateXml()
         {
@@ -22,7 +22,7 @@ namespace InformationSender
                 new XElement("DocType", "BOF/inkassodokument")
             );
 
-            foreach (var file in Model)
+            foreach (var file in FileList)
             {
                 var fileElement =
                 new XElement("FileInfo",

@@ -5,10 +5,10 @@
         static void Main(string[] args)
         {
             var model = new DocumentModel();
-            var modelList = new DocumentModel[1];
-            modelList[0] = model;
+            var fileList = new DocumentModel[1];
+            fileList[0] = model;
 
-            var creationService = new XmlCreationService("10002", modelList);
+            var creationService = new XmlCreationService("10002", fileList);
             creationService.CreateXml();
         }
     }
