@@ -15,9 +15,10 @@ namespace InformationSender
 
         public void CreateXml()
         {
-            var rootElement = new XElement("File",
-            new XElement("Owner", Model.Owner),
-            new XElement("DocType", Model.DocType)
+            var rootElement =
+            new XElement("File",
+                new XElement("Owner", Model.Owner),
+                new XElement("DocType", Model.DocType)
             );
 
             var fileElement =
