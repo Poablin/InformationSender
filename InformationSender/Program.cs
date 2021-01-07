@@ -19,7 +19,7 @@ namespace InformationSender
                 var date = RandomDate();
                 var testFile = new DocumentModel();
                 testFile.Owner = random.Next(10001, 10003).ToString();
-                testFile.DocType = "BOF/inkassodokument";
+                testFile.DocType = "BOF";
                 testFile.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
                 testFile.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();
                 //Husk Mod10 på CustomerNumber
