@@ -45,7 +45,6 @@ namespace InformationSender
                        new XElement("DueDate", file.DueDate),
                        new XElement("TotalAmount", file.TotalAmount)
                     );
-
                     doc.Root.Add(fileElement);
                 }
                 var sw = new StringWriter();
