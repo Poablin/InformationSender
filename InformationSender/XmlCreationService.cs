@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -34,7 +35,9 @@ namespace InformationSender
                 doc.Root.Add(new XElement("Owner", owner));
                 doc.Root.Add(new XElement("DocType", "BOF"));
 
-                foreach (var file in FileList)
+                var filesToAddIntoXml = FileList.Where(x => x.Owner == owner);
+
+                foreach (var file in filesToAddIntoXml)
                 {
                     var fileElement =
                     new XElement("FileInfo",
