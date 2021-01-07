@@ -14,8 +14,8 @@ namespace InformationSender
             fileList[0] = model;
 
 
-            var testList = new DocumentModel[1000];
-            for (int i = 0; i < 1000; i++)
+            var testList = new DocumentModel[random.Next(1000, 10000)];
+            for (int i = 0; i < testList.Length; i++)
             {
                 var testFile = new DocumentModel();
                 testFile.Owner = random.Next(10001, 10002).ToString();
