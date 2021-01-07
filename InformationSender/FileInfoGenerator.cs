@@ -13,7 +13,7 @@ namespace InformationSender
             {
                 var date = RandomDate();
                 var fileInfo = new FileModel();
-                fileInfo.Owner = random.Next(10001, 10002).ToString();
+                fileInfo.Owner = random.Next(10001, 10003).ToString();
                 fileInfo.DocType = "BOF";
                 fileInfo.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
                 fileInfo.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();
