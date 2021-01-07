@@ -32,9 +32,9 @@ namespace InformationSender
                     doc.Root.Add(new XElement("Owner", owner));
                     doc.Root.Add(new XElement("DocType", "BOF"));
 
-                    var filesToAddIntoXml = FileList.Where(x => x.Owner == owner);
+                    var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner);
 
-                    foreach (var file in filesToAddIntoXml)
+                    foreach (var file in fileInfoToAddIntoXml)
                     {
                         var fileElement =
                         new XElement("FileInfo",
@@ -53,16 +53,28 @@ namespace InformationSender
                         File.WriteAllText(OutputPath + owner + "\\" + file.Filename, "");
                     }
 
-                    var sw = new StringWriter();
-                    using (XmlWriter xw = XmlWriter.Create(OutputPath + owner + "\\" + Random.Next(999999) + ".xml"))
-                    {
-                        doc.Save(xw);
-                    }
-                    sw.Close();
+                    WriteXmlFile(owner, doc);
 
                     ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
                     Directory.Delete(OutputPath + owner, true);
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private void WriteXmlFile(string owner, XDocument doc)
+        {
+            try
+            {
+                var sw = new StringWriter();
+                using (XmlWriter xw = XmlWriter.Create(OutputPath + owner + "\\" + Random.Next(999999) + ".xml"))
+                {
+                    doc.Save(xw);
+                }
+                sw.Close();
             }
             catch (Exception e)
             {
