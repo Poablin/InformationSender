@@ -6,7 +6,7 @@ namespace InformationSender
 {
     class Program
     {
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
         static void Main(string[] args)
         {
             var model = new DocumentModel();
@@ -25,6 +25,7 @@ namespace InformationSender
                 testFile.CustomerNumber = $"005{testFile.InvoiceNumber}6";
                 testFile.KID = "2345676";
                 testFile.Name = RandomString(10);
+                testFile.Addr1 = RandomString(6);
 
                 testList[i] = testFile;
             }
@@ -35,7 +36,7 @@ namespace InformationSender
 
         public static string RandomString(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
