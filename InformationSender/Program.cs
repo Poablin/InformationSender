@@ -11,8 +11,8 @@ namespace InformationSender
             var fileInfoGenerator = new FileInfoGenerator();
             var fileInfoList = fileInfoGenerator.GenerateFileInfoList();
 
-            var creationService = new XmlCreationService(fileInfoList);
-            creationService.CreateXmlFilesFromFileInfo();
+            var XmlcreationService = new XmlCreationService(fileInfoList);
+            XmlcreationService.CreateXmlFilesFromFileInfo();
         }
 
 
