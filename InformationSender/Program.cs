@@ -31,7 +31,7 @@ namespace InformationSender
                 testFile.ZipName = RandomString(9);
                 testFile.CountryCode = "NO";
                 testFile.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
-                date = date.AddDays(-30);
+                date = date.AddDays(30);
                 testFile.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
 
                 testList[i] = testFile;
