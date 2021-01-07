@@ -19,7 +19,7 @@ namespace InformationSender
                 fileInfo.Filename = "2" + Random.Next(0000000, 9999999) + ".pdf";
                 fileInfo.InvoiceNumber = "1" + Random.Next(00000, 99999);
                 fileInfo.CustomerNumber = "000001";
-                //Husk Mod10 på KID
+
                 var mod10 = Mod10($"005{fileInfo.InvoiceNumber}");
                 fileInfo.KID = $"005{fileInfo.InvoiceNumber}{mod10}";
                 fileInfo.Name = RandomString(10);
@@ -28,6 +28,7 @@ namespace InformationSender
                 fileInfo.ZipName = RandomString(9);
                 fileInfo.CountryCode = "NO";
                 fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
+
                 date = date.AddDays(30);
                 fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 fileInfo.TotalAmount = Random.Next(00000, 99999);
