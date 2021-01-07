@@ -43,8 +43,7 @@ namespace InformationSender
                        new XElement("CountryCode", file.CountryCode),
                        new XElement("IssueDate", file.IssueDate),
                        new XElement("DueDate", file.DueDate),
-                       new XElement("TotalAmount", file.TotalAmount)
-                    );
+                       new XElement("TotalAmount", file.TotalAmount));
                     doc.Root.Add(fileElement);
                 }
                 var sw = new StringWriter();
