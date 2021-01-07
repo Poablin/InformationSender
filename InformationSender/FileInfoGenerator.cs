@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace InformationSender
 {
@@ -24,13 +22,13 @@ namespace InformationSender
                 fileInfo.KID = "2345676";
                 fileInfo.Name = RandomString(10);
                 fileInfo.Addr1 = RandomString(6);
-                fileInfo.ZipCode = random.Next(9999).ToString();
+                fileInfo.ZipCode = random.Next(0000, 9999).ToString();
                 fileInfo.ZipName = RandomString(9);
                 fileInfo.CountryCode = "NO";
                 fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 date = date.AddDays(30);
                 fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
-                fileInfo.TotalAmount = random.Next(99999);
+                fileInfo.TotalAmount = random.Next(00000, 99999);
                 fileInfo.FileLocation = @"C:\";
                 fileInfo.BatchID = 001;
 

@@ -1,0 +1,6 @@
+﻿namespace InformationSender
+{
+    class ZipCreationService
+    {
+    }
+}

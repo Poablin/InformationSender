@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace InformationSender
+﻿namespace InformationSender
 {
     class Program
     {
@@ -13,6 +10,7 @@ namespace InformationSender
 
             var XmlcreationService = new XmlCreationService(fileInfoList);
             XmlcreationService.CreateXmlFilesFromFileInfo();
+
         }
     }
 }
