@@ -32,9 +32,10 @@ namespace InformationSender
                 new XElement("TotalAmount", model.TotalAmount)
             );
 
-           var doc = new XDocument(xmlTree1);
+            var doc = new XDocument(xmlTree1);
             doc.Root.Add(xmlTree2);
 
+            //Kan legges til om Xml headern skal fjernes
             //XmlWriterSettings settings = new XmlWriterSettings();
             //settings.OmitXmlDeclaration = true;
             var sw = new StringWriter();
