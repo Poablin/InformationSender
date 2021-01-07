@@ -12,12 +12,12 @@ namespace InformationSender
         {
             var model = new DocumentModel();
 
-            var xmlTree1 = new XElement("File",
+            var rootElement = new XElement("File",
             new XElement("Owner", model.Owner),
             new XElement("DocType", model.DocType)
             );
 
-            var xmlTree2 =
+            var fileElement =
             new XElement("FileInfo",
                 new XElement("Filename", model.Filename),
                 new XElement("InvoiceNumber", model.InvoiceNumber),
@@ -32,8 +32,8 @@ namespace InformationSender
                 new XElement("TotalAmount", model.TotalAmount)
             );
 
-            var doc = new XDocument(xmlTree1);
-            doc.Root.Add(xmlTree2);
+            var doc = new XDocument(rootElement);
+            doc.Root.Add(fileElement);
 
             //Kan legges til om Xml headern skal fjernes
             //XmlWriterSettings settings = new XmlWriterSettings();
