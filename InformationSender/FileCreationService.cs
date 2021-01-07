@@ -34,23 +34,23 @@ namespace InformationSender
 
                     var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner);
 
-                    foreach (var file in fileInfoToAddIntoXml)
+                    foreach (var fileInfo in fileInfoToAddIntoXml)
                     {
                         var fileElement =
                         new XElement("FileInfo",
-                           new XElement("Filename", file.Filename),
-                           new XElement("InvoiceNumber", file.InvoiceNumber),
-                           new XElement("CustomerNumber", file.CustomerNumber),
-                           new XElement("Name", file.Name),
-                           new XElement("Addr1", file.Addr1),
-                           new XElement("ZipCode", file.ZipCode),
-                           new XElement("ZipName", file.ZipName),
-                           new XElement("CountryCode", file.CountryCode),
-                           new XElement("IssueDate", file.IssueDate),
-                           new XElement("DueDate", file.DueDate),
-                           new XElement("TotalAmount", file.TotalAmount));
+                           new XElement("Filename", fileInfo.Filename),
+                           new XElement("InvoiceNumber", fileInfo.InvoiceNumber),
+                           new XElement("CustomerNumber", fileInfo.CustomerNumber),
+                           new XElement("Name", fileInfo.Name),
+                           new XElement("Addr1", fileInfo.Addr1),
+                           new XElement("ZipCode", fileInfo.ZipCode),
+                           new XElement("ZipName", fileInfo.ZipName),
+                           new XElement("CountryCode", fileInfo.CountryCode),
+                           new XElement("IssueDate", fileInfo.IssueDate),
+                           new XElement("DueDate", fileInfo.DueDate),
+                           new XElement("TotalAmount", fileInfo.TotalAmount));
                         doc.Root.Add(fileElement);
-                        File.WriteAllText(OutputPath + owner + "\\" + file.Filename, "");
+                        File.WriteAllText(OutputPath + owner + "\\" + fileInfo.Filename, "");
                     }
 
                     WriteXmlFile(owner, doc);
