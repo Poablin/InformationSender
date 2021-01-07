@@ -29,7 +29,7 @@ namespace InformationSender
                 date = date.AddDays(30);
                 fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 fileInfo.TotalAmount = random.Next(00000, 99999);
-                fileInfo.FileLocation = @"C:\Test\";
+                fileInfo.FileLocation = @"E:\Test\";
                 fileInfo.BatchID = 001;
 
                 fileInfoList[i] = fileInfo;

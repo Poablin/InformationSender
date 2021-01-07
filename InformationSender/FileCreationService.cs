@@ -1,22 +1,23 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace InformationSender
 {
-    class XmlCreationService
+    class FileCreationService
     {
-        public XmlCreationService(DocumentModel[] fileList)
+        public FileCreationService(DocumentModel[] fileList)
         {
             FileList = fileList;
         }
 
-        private Random Random = new Random();
+        private readonly Random Random = new Random();
         private DocumentModel[] FileList { get; set; }
 
-        public void CreateXmlFilesFromFileInfo()
+        public void CreateFilesFromFileInfo()
         {
             var ownerList = FileList.Select(x => x.Owner).Distinct();
 
@@ -51,6 +52,8 @@ namespace InformationSender
                     doc.Save(xw);
                 }
                 sw.Close();
+
+                ZipFile.CreateFromDirectory(@"E:\Test\" + owner, @"E:\Test\" + owner + ".zip");
             }
         }
     }

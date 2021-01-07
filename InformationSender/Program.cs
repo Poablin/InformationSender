@@ -8,8 +8,8 @@
             var fileInfoGenerator = new FileInfoGenerator();
             var fileInfoList = fileInfoGenerator.GenerateFileInfoList();
 
-            var XmlcreationService = new XmlCreationService(fileInfoList);
-            XmlcreationService.CreateXmlFilesFromFileInfo();
+            var XmlcreationService = new FileCreationService(fileInfoList);
+            XmlcreationService.CreateFilesFromFileInfo();
         }
     }
 }
