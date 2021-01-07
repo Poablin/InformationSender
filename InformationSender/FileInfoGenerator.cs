@@ -10,34 +10,34 @@ namespace InformationSender
         private static readonly Random random = new Random();
         public DocumentModel[] GenerateFileInfoList()
         {
-            var testList = new DocumentModel[random.Next(1000, 10000)];
-            for (int i = 0; i < testList.Length; i++)
+            var fileInfoList = new DocumentModel[random.Next(1000, 10000)];
+            for (int i = 0; i < fileInfoList.Length; i++)
             {
                 var date = RandomDate();
-                var testFile = new DocumentModel();
-                testFile.Owner = random.Next(10001, 10003).ToString();
-                testFile.DocType = "BOF";
-                testFile.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
-                testFile.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();
+                var fileInfo = new DocumentModel();
+                fileInfo.Owner = random.Next(10001, 10003).ToString();
+                fileInfo.DocType = "BOF";
+                fileInfo.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
+                fileInfo.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();
                 //Husk Mod10 på CustomerNumber
-                testFile.CustomerNumber = $"005{testFile.InvoiceNumber}6";
-                testFile.KID = "2345676";
-                testFile.Name = RandomString(10);
-                testFile.Addr1 = RandomString(6);
-                testFile.ZipCode = random.Next(9999).ToString();
-                testFile.ZipName = RandomString(9);
-                testFile.CountryCode = "NO";
-                testFile.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                fileInfo.CustomerNumber = $"005{fileInfo.InvoiceNumber}6";
+                fileInfo.KID = "2345676";
+                fileInfo.Name = RandomString(10);
+                fileInfo.Addr1 = RandomString(6);
+                fileInfo.ZipCode = random.Next(9999).ToString();
+                fileInfo.ZipName = RandomString(9);
+                fileInfo.CountryCode = "NO";
+                fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 date = date.AddDays(30);
-                testFile.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
-                testFile.TotalAmount = random.Next(99999);
-                testFile.FileLocation = @"C:\Users\krist\Downloads\test";
-                testFile.BatchID = 001;
+                fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                fileInfo.TotalAmount = random.Next(99999);
+                fileInfo.FileLocation = @"C:\Users\krist\Downloads\test";
+                fileInfo.BatchID = 001;
 
-                testList[i] = testFile;
+                fileInfoList[i] = fileInfo;
             }
 
-            return testList;
+            return fileInfoList;
         }
 
         public static string RandomString(int length)
