@@ -7,8 +7,8 @@
             var fileInfoGenerator = new FileInfoGenerator();
             var fileInfoList = fileInfoGenerator.GenerateFileInfoList();
 
-            var XmlcreationService = new FileCreationService(fileInfoList);
-            XmlcreationService.CreateFilesFromFileInfo();
+            var FileCreationService = new FileCreationService(fileInfoList);
+            FileCreationService.CreateFilesFromFileInfo();
         }
     }
 }
