@@ -41,7 +41,7 @@ namespace InformationSender
                 doc.Root.Add(fileElement);
 
                 var sw = new StringWriter();
-                using (XmlWriter xw = XmlWriter.Create(@"C:\Users\krist\Downloads\Test.xml"))
+                using (XmlWriter xw = XmlWriter.Create(@"C:\Users\krist\Downloads\test\" + file.Filename))
                 {
                     doc.Save(xw);
                 }
