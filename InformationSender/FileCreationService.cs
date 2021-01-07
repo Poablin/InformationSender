@@ -10,16 +10,16 @@ namespace InformationSender
 {
     internal class FileCreationService
     {
-        private const string OutputPath = @"E:\Test\";
-
         private readonly Random _random = new Random();
 
-        public FileCreationService(FileModel[] fileList)
+        public FileCreationService(FileModel[] fileList, string outputPath)
         {
-            FilesReadyToSend = new List<string>();
+            OutputPath = outputPath;
             FileList = fileList;
+            FilesReadyToSend = new List<string>();
         }
 
+        private string OutputPath { get; set; }
         public List<string> FilesReadyToSend { get; private set; }
 
         private FileModel[] FileList { get; }
@@ -90,7 +90,7 @@ namespace InformationSender
             }
         }
 
-        private static void CreateZipFile(string owner)
+        private void CreateZipFile(string owner)
         {
             try
             {
