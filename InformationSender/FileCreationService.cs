@@ -19,10 +19,8 @@ namespace InformationSender
             FilesReadyToSend = new List<string>();
         }
 
-        private string OutputPath { get; set; }
-
-        public List<string> FilesReadyToSend { get; private set; }
-
+        private string OutputPath { get; }
+        public List<string> FilesReadyToSend { get; }
         private FileModel[] FileList { get; }
 
         public void CreateFilesFromFileInfo()
