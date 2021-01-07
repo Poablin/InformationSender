@@ -54,14 +54,25 @@ namespace InformationSender
                     }
 
                     WriteXmlFile(owner, doc);
-
-                    ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
+                    CreateZipFile(owner);
                     Directory.Delete(OutputPath + owner, true);
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void CreateZipFile(string owner)
+        {
+            try
+            {
+                ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -78,7 +89,7 @@ namespace InformationSender
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
     }
