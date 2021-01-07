@@ -28,6 +28,8 @@ namespace InformationSender
                 testFile.Addr1 = RandomString(6);
                 testFile.ZipCode = random.Next(9999).ToString();
                 testFile.ZipName = RandomString(9);
+                testFile.CountryCode = "NO";
+                testFile.IssueDate = RandomDay();
 
                 testList[i] = testFile;
             }
@@ -41,6 +43,14 @@ namespace InformationSender
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public static string RandomDay()
+        {
+            DateTime start = new DateTime(1990, 1, 1);
+            int range = (DateTime.Today.AddDays(-30) - start).Days;
+            var nextStep = start.AddDays(random.Next(range));
+            return $"{nextStep.Day}.{nextStep.Month}.{nextStep.Year}";
         }
     }
 }
