@@ -84,7 +84,7 @@ namespace InformationSender
             }
         }
 
-        private void CreateZipFile(string owner)
+        private static void CreateZipFile(string owner)
         {
             try
             {
