@@ -10,7 +10,6 @@
 
             var XmlcreationService = new XmlCreationService(fileInfoList);
             XmlcreationService.CreateXmlFilesFromFileInfo();
-
         }
     }
 }
