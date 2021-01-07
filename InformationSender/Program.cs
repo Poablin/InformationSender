@@ -10,7 +10,7 @@ namespace InformationSender
     {
         static void Main(string[] args)
         {
-            DocumentModel model = new DocumentModel();
+            var model = new DocumentModel();
 
             var xmlTree1 = new XElement("File",
             new XElement("Owner", 1),
