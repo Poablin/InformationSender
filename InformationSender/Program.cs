@@ -17,6 +17,7 @@ namespace InformationSender
             var testList = new DocumentModel[random.Next(1000, 10000)];
             for (int i = 0; i < testList.Length; i++)
             {
+                var date = RandomDate();
                 var testFile = new DocumentModel();
                 testFile.Owner = random.Next(10001, 10002).ToString();
                 testFile.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
@@ -29,7 +30,9 @@ namespace InformationSender
                 testFile.ZipCode = random.Next(9999).ToString();
                 testFile.ZipName = RandomString(9);
                 testFile.CountryCode = "NO";
-                testFile.IssueDate = RandomDay();
+                testFile.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                date = date.AddDays(-30);
+                testFile.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
 
                 testList[i] = testFile;
             }
@@ -45,12 +48,11 @@ namespace InformationSender
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static string RandomDay()
+        public static DateTime RandomDate()
         {
             DateTime start = new DateTime(1990, 1, 1);
             int range = (DateTime.Today.AddDays(-30) - start).Days;
-            var nextStep = start.AddDays(random.Next(range));
-            return $"{nextStep.Day}.{nextStep.Month}.{nextStep.Year}";
+            return start.AddDays(random.Next(range));
         }
     }
 }
