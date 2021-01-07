@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -15,8 +16,11 @@ namespace InformationSender
 
         public FileCreationService(FileModel[] fileList)
         {
+            FilesReadyToSendPath = new List<string>();
             FileList = fileList;
         }
+
+        public List<string> FilesReadyToSendPath { get; private set; }
 
         private FileModel[] FileList { get; }
 
@@ -58,6 +62,7 @@ namespace InformationSender
 
                     WriteXmlFile(owner, doc);
                     CreateZipFile(owner);
+                    FilesReadyToSendPath.Add(OutputPath + owner + ".zip");
                     Directory.Delete(OutputPath + owner, true);
                 }
             }

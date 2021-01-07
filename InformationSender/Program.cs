@@ -1,4 +1,8 @@
-﻿namespace InformationSender
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+
+namespace InformationSender
 {
     internal class Program
     {
@@ -8,6 +12,8 @@
 
             var FileCreationService = new FileCreationService(fileInfoList);
             FileCreationService.CreateFilesFromFileInfo();
+
+            SendFileToServer.Send(FileCreationService.FilesReadyToSendPath.ToString());
         }
     }
 }
