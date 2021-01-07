@@ -15,6 +15,7 @@ namespace InformationSender
         }
 
         private readonly Random Random = new Random();
+        private readonly string OutputPath = @"E:\Test\";
         private DocumentModel[] FileList { get; set; }
 
         public void CreateFilesFromFileInfo()
@@ -25,7 +26,7 @@ namespace InformationSender
 
                 foreach (var owner in ownerList)
                 {
-                    Directory.CreateDirectory(@"E:\Test\" + owner);
+                    Directory.CreateDirectory(@OutputPath + owner);
 
                     var doc = new XDocument(new XElement("File"));
                     doc.Root.Add(new XElement("Owner", owner));
@@ -49,18 +50,18 @@ namespace InformationSender
                            new XElement("DueDate", file.DueDate),
                            new XElement("TotalAmount", file.TotalAmount));
                         doc.Root.Add(fileElement);
-                        File.WriteAllText(@"E:\Test\" + owner + "\\" + file.Filename, "");
+                        File.WriteAllText(OutputPath + owner + "\\" + file.Filename, "");
                     }
 
                     var sw = new StringWriter();
-                    using (XmlWriter xw = XmlWriter.Create(@"E:\Test\" + owner + "\\" + Random.Next(999999) + ".xml"))
+                    using (XmlWriter xw = XmlWriter.Create(OutputPath + owner + "\\" + Random.Next(999999) + ".xml"))
                     {
                         doc.Save(xw);
                     }
                     sw.Close();
 
-                    ZipFile.CreateFromDirectory(@"E:\Test\" + owner, @"E:\Test\" + owner + ".zip");
-                    Directory.Delete(@"E:\Test\" + owner, true);
+                    ZipFile.CreateFromDirectory(OutputPath + owner, OutputPath + owner + ".zip");
+                    Directory.Delete(OutputPath + owner, true);
                 }
             }
             catch (Exception e)
