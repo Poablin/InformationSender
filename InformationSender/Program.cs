@@ -4,8 +4,7 @@
     {
         private static void Main(string[] args)
         {
-            var fileInfoGenerator = new FileInfoGenerator();
-            var fileInfoList = fileInfoGenerator.GenerateFileInfoList();
+            var fileInfoList = FileInfoGenerator.GenerateFileInfoList();
 
             var FileCreationService = new FileCreationService(fileInfoList);
             FileCreationService.CreateFilesFromFileInfo();

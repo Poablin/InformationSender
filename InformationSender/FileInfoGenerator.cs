@@ -3,33 +3,33 @@ using System.Linq;
 
 namespace InformationSender
 {
-    internal class FileInfoGenerator
+    internal static class FileInfoGenerator
     {
-        private static readonly Random random = new Random();
+        private static readonly Random Random = new Random();
 
-        public FileModel[] GenerateFileInfoList()
+        public static FileModel[] GenerateFileInfoList()
         {
-            var fileInfoList = new FileModel[random.Next(1000, 10000)];
+            var fileInfoList = new FileModel[Random.Next(1000, 10000)];
             for (var i = 0; i < fileInfoList.Length; i++)
             {
                 var date = RandomDate();
                 var fileInfo = new FileModel();
-                fileInfo.Owner = random.Next(10001, 10004).ToString();
+                fileInfo.Owner = Random.Next(10001, 10004).ToString();
                 fileInfo.DocType = "BOF";
-                fileInfo.Filename = "2" + random.Next(0000000, 9999999) + ".pdf";
-                fileInfo.InvoiceNumber = "1" + random.Next(000000, 99999);
+                fileInfo.Filename = "2" + Random.Next(0000000, 9999999) + ".pdf";
+                fileInfo.InvoiceNumber = "1" + Random.Next(000000, 99999);
                 //Husk Mod10 på CustomerNumber
                 fileInfo.CustomerNumber = $"005{fileInfo.InvoiceNumber}6";
                 fileInfo.KID = "2345676";
                 fileInfo.Name = RandomString(10);
                 fileInfo.Addr1 = RandomString(6);
-                fileInfo.ZipCode = random.Next(0000, 9999).ToString();
+                fileInfo.ZipCode = Random.Next(0000, 9999).ToString();
                 fileInfo.ZipName = RandomString(9);
                 fileInfo.CountryCode = "NO";
                 fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 date = date.AddDays(30);
                 fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
-                fileInfo.TotalAmount = random.Next(00000, 99999);
+                fileInfo.TotalAmount = Random.Next(00000, 99999);
                 fileInfo.FileLocation = @"E:\Test\";
                 fileInfo.BatchID = 001;
 
@@ -39,18 +39,18 @@ namespace InformationSender
             return fileInfoList;
         }
 
-        public static string RandomString(int length)
+        private static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz";
             return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+                .Select(s => s[Random.Next(s.Length)]).ToArray());
         }
 
-        public static DateTime RandomDate()
+        private static DateTime RandomDate()
         {
             var start = new DateTime(1990, 1, 1);
             var range = (DateTime.Today.AddDays(-30) - start).Days;
-            return start.AddDays(random.Next(range));
+            return start.AddDays(Random.Next(range));
         }
     }
 }
