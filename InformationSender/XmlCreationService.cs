@@ -10,7 +10,9 @@ namespace InformationSender
         {
             Model = model;
         }
+
         private DocumentModel Model { get; set; }
+
         public void CreateXml()
         {
             var rootElement = new XElement("File",

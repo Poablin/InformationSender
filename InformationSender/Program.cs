@@ -7,7 +7,6 @@
             var model = new DocumentModel();
             var creationService = new XmlCreationService(model);
             creationService.CreateXml();
-
         }
     }
 }
