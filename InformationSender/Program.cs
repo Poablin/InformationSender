@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace InformationSender
@@ -19,7 +18,8 @@ namespace InformationSender
             {
                 var date = RandomDate();
                 var testFile = new DocumentModel();
-                testFile.Owner = random.Next(10001, 10002).ToString();
+                testFile.Owner = random.Next(10001, 10003).ToString();
+                testFile.DocType = "BOF/inkassodokument";
                 testFile.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
                 testFile.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();
                 //Husk Mod10 på CustomerNumber
@@ -33,6 +33,9 @@ namespace InformationSender
                 testFile.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 date = date.AddDays(30);
                 testFile.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                testFile.TotalAmount = random.Next(99999);
+                testFile.FileLocation = @"C:\Users\krist\Downloads\test";
+                testFile.BatchID = 001;
 
                 testList[i] = testFile;
             }
