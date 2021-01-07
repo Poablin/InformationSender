@@ -40,7 +40,7 @@ namespace InformationSender
                 testList[i] = testFile;
             }
 
-            var creationService = new XmlCreationService(fileList);
+            var creationService = new XmlCreationService(testList);
             creationService.CreateXml();
         }
 

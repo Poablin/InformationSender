@@ -19,7 +19,7 @@ namespace InformationSender
                 var rootElement =
                 new XElement("File",
                     new XElement("Owner", file.Owner),
-                    new XElement("DocType", "BOF/inkassodokument")
+                    new XElement("DocType", "BOF")
                 );
 
                 var fileElement =
@@ -41,7 +41,7 @@ namespace InformationSender
                 doc.Root.Add(fileElement);
 
                 var sw = new StringWriter();
-                using (XmlWriter xw = XmlWriter.Create(@"C:\Users\krist\Downloads\test\" + file.Filename))
+                using (XmlWriter xw = XmlWriter.Create(@"E:\Test\" + file.Filename))
                 {
                     doc.Save(xw);
                 }
