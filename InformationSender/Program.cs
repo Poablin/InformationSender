@@ -42,6 +42,7 @@ namespace InformationSender
             {
                 doc.Save(xw);
             }
+            sw.Close();
         }
     }
 }
