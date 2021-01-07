@@ -6,14 +6,14 @@ namespace InformationSender
     class FileInfoGenerator
     {
         private static readonly Random random = new Random();
-        public DocumentModel[] GenerateFileInfoList()
+        public FileModel[] GenerateFileInfoList()
         {
-            var fileInfoList = new DocumentModel[random.Next(1000, 10000)];
+            var fileInfoList = new FileModel[random.Next(1000, 10000)];
             for (int i = 0; i < fileInfoList.Length; i++)
             {
                 var date = RandomDate();
-                var fileInfo = new DocumentModel();
-                fileInfo.Owner = random.Next(10001, 10003).ToString();
+                var fileInfo = new FileModel();
+                fileInfo.Owner = random.Next(10001, 10002).ToString();
                 fileInfo.DocType = "BOF";
                 fileInfo.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
                 fileInfo.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();

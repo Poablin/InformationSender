@@ -9,14 +9,14 @@ namespace InformationSender
 {
     class FileCreationService
     {
-        public FileCreationService(DocumentModel[] fileList)
+        public FileCreationService(FileModel[] fileList)
         {
             FileList = fileList;
         }
 
         private readonly Random Random = new Random();
         private readonly string OutputPath = @"E:\Test\";
-        private DocumentModel[] FileList { get; set; }
+        private FileModel[] FileList { get; set; }
 
         public void CreateFilesFromFileInfo()
         {
@@ -26,7 +26,7 @@ namespace InformationSender
 
                 foreach (var owner in ownerList)
                 {
-                    Directory.CreateDirectory(@OutputPath + owner);
+                    Directory.CreateDirectory(OutputPath + owner);
 
                     var doc = new XDocument(new XElement("File"));
                     doc.Root.Add(new XElement("Owner", owner));
