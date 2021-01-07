@@ -17,7 +17,7 @@ namespace InformationSender
         private List<string> OwnerList { get; set; }
         private DocumentModel[] FileList { get; set; }
 
-        public void CreateXml()
+        public void CreateXmlFilesFromFileInfo()
         {
             var random = new Random();
 

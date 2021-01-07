@@ -12,7 +12,7 @@ namespace InformationSender
             var fileInfoList = fileInfoGenerator.GenerateFileInfoList();
 
             var creationService = new XmlCreationService(fileInfoList);
-            creationService.CreateXml();
+            creationService.CreateXmlFilesFromFileInfo();
         }
 
 
