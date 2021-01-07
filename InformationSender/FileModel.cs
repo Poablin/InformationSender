@@ -1,6 +1,6 @@
 ﻿namespace InformationSender
 {
-    public class DocumentModel
+    public class FileModel
     {
         // Either: 10001 or 10002
         public string Owner { get; set; }
