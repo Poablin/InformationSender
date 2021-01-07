@@ -9,9 +9,9 @@ namespace InformationSender
 {
     internal class FileCreationService
     {
-        private readonly string OutputPath = @"E:\Test\";
+        private const string OutputPath = @"E:\Test\";
 
-        private readonly Random Random = new Random();
+        private readonly Random _random = new Random();
 
         public FileCreationService(FileModel[] fileList)
         {
@@ -31,8 +31,8 @@ namespace InformationSender
                     Directory.CreateDirectory(OutputPath + owner);
 
                     var doc = new XDocument(new XElement("File"));
-                    doc.Root.Add(new XElement("Owner", owner));
-                    doc.Root.Add(new XElement("DocType", "BOF"));
+                    doc.Root?.Add(new XElement("Owner", owner));
+                    doc.Root?.Add(new XElement("DocType", "BOF"));
 
                     var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner);
 
@@ -51,7 +51,7 @@ namespace InformationSender
                                 new XElement("IssueDate", fileInfo.IssueDate),
                                 new XElement("DueDate", fileInfo.DueDate),
                                 new XElement("TotalAmount", fileInfo.TotalAmount));
-                        doc.Root.Add(fileElement);
+                        doc.Root?.Add(fileElement);
                         File.WriteAllText(OutputPath + owner + "\\" + fileInfo.Filename, "");
                     }
 
@@ -71,7 +71,7 @@ namespace InformationSender
             try
             {
                 var sw = new StringWriter();
-                using (var xw = XmlWriter.Create(OutputPath + owner + "\\" + Random.Next(999999) + ".xml"))
+                using (var xw = XmlWriter.Create(OutputPath + owner + "\\" + _random.Next(999999) + ".xml"))
                 {
                     doc.Save(xw);
                 }
