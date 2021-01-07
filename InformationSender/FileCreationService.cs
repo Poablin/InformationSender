@@ -7,16 +7,18 @@ using System.Xml.Linq;
 
 namespace InformationSender
 {
-    class FileCreationService
+    internal class FileCreationService
     {
+        private readonly string OutputPath = @"E:\Test\";
+
+        private readonly Random Random = new Random();
+
         public FileCreationService(FileModel[] fileList)
         {
             FileList = fileList;
         }
 
-        private readonly Random Random = new Random();
-        private readonly string OutputPath = @"E:\Test\";
-        private FileModel[] FileList { get; set; }
+        private FileModel[] FileList { get; }
 
         public void CreateFilesFromFileInfo()
         {
@@ -37,18 +39,18 @@ namespace InformationSender
                     foreach (var fileInfo in fileInfoToAddIntoXml)
                     {
                         var fileElement =
-                        new XElement("FileInfo",
-                           new XElement("Filename", fileInfo.Filename),
-                           new XElement("InvoiceNumber", fileInfo.InvoiceNumber),
-                           new XElement("CustomerNumber", fileInfo.CustomerNumber),
-                           new XElement("Name", fileInfo.Name),
-                           new XElement("Addr1", fileInfo.Addr1),
-                           new XElement("ZipCode", fileInfo.ZipCode),
-                           new XElement("ZipName", fileInfo.ZipName),
-                           new XElement("CountryCode", fileInfo.CountryCode),
-                           new XElement("IssueDate", fileInfo.IssueDate),
-                           new XElement("DueDate", fileInfo.DueDate),
-                           new XElement("TotalAmount", fileInfo.TotalAmount));
+                            new XElement("FileInfo",
+                                new XElement("Filename", fileInfo.Filename),
+                                new XElement("InvoiceNumber", fileInfo.InvoiceNumber),
+                                new XElement("CustomerNumber", fileInfo.CustomerNumber),
+                                new XElement("Name", fileInfo.Name),
+                                new XElement("Addr1", fileInfo.Addr1),
+                                new XElement("ZipCode", fileInfo.ZipCode),
+                                new XElement("ZipName", fileInfo.ZipName),
+                                new XElement("CountryCode", fileInfo.CountryCode),
+                                new XElement("IssueDate", fileInfo.IssueDate),
+                                new XElement("DueDate", fileInfo.DueDate),
+                                new XElement("TotalAmount", fileInfo.TotalAmount));
                         doc.Root.Add(fileElement);
                         File.WriteAllText(OutputPath + owner + "\\" + fileInfo.Filename, "");
                     }
@@ -69,10 +71,11 @@ namespace InformationSender
             try
             {
                 var sw = new StringWriter();
-                using (XmlWriter xw = XmlWriter.Create(OutputPath + owner + "\\" + Random.Next(999999) + ".xml"))
+                using (var xw = XmlWriter.Create(OutputPath + owner + "\\" + Random.Next(999999) + ".xml"))
                 {
                     doc.Save(xw);
                 }
+
                 sw.Close();
             }
             catch (Exception e)

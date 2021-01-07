@@ -1,9 +1,8 @@
 ﻿namespace InformationSender
 {
-    class Program
+    internal class Program
     {
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var fileInfoGenerator = new FileInfoGenerator();
             var fileInfoList = fileInfoGenerator.GenerateFileInfoList();

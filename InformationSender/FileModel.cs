@@ -49,6 +49,5 @@
 
         // Always 001
         public long BatchID { get; set; }
-
     }
 }

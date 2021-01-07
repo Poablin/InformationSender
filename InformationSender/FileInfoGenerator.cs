@@ -3,20 +3,21 @@ using System.Linq;
 
 namespace InformationSender
 {
-    class FileInfoGenerator
+    internal class FileInfoGenerator
     {
         private static readonly Random random = new Random();
+
         public FileModel[] GenerateFileInfoList()
         {
             var fileInfoList = new FileModel[random.Next(1000, 10000)];
-            for (int i = 0; i < fileInfoList.Length; i++)
+            for (var i = 0; i < fileInfoList.Length; i++)
             {
                 var date = RandomDate();
                 var fileInfo = new FileModel();
                 fileInfo.Owner = random.Next(10001, 10004).ToString();
                 fileInfo.DocType = "BOF";
-                fileInfo.Filename = "2" + random.Next(0000000, 9999999).ToString() + ".pdf";
-                fileInfo.InvoiceNumber = "1" + random.Next(000000, 99999).ToString();
+                fileInfo.Filename = "2" + random.Next(0000000, 9999999) + ".pdf";
+                fileInfo.InvoiceNumber = "1" + random.Next(000000, 99999);
                 //Husk Mod10 på CustomerNumber
                 fileInfo.CustomerNumber = $"005{fileInfo.InvoiceNumber}6";
                 fileInfo.KID = "2345676";
@@ -42,13 +43,13 @@ namespace InformationSender
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz";
             return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+                .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public static DateTime RandomDate()
         {
-            DateTime start = new DateTime(1990, 1, 1);
-            int range = (DateTime.Today.AddDays(-30) - start).Days;
+            var start = new DateTime(1990, 1, 1);
+            var range = (DateTime.Today.AddDays(-30) - start).Days;
             return start.AddDays(random.Next(range));
         }
     }
