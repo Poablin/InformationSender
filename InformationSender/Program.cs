@@ -26,6 +26,8 @@ namespace InformationSender
                 testFile.KID = "2345676";
                 testFile.Name = RandomString(10);
                 testFile.Addr1 = RandomString(6);
+                testFile.ZipCode = random.Next(9999).ToString();
+                testFile.ZipName = RandomString(9);
 
                 testList[i] = testFile;
             }
