@@ -37,19 +37,15 @@ namespace InformationSender
 
         public static bool IsValidDate(string issueDate, string dueDate)
         {
-            var issueDateParsed = DateTime.TryParseExact(issueDate, "ddMMyyyy",
+            DateTime.TryParseExact(issueDate, "dd.MM.yyyy",
                 null, DateTimeStyles.AssumeLocal,
                 out var validIssueDate);
 
-            var dueDateParsed = DateTime.TryParseExact(issueDate, "ddMMyyyy",
+            DateTime.TryParseExact(dueDate, "dd.MM.yyyy",
                 null, DateTimeStyles.AssumeLocal,
                 out var validDueDate);
 
-            var issueDateMoreThanThirtyDaysAgo = (validIssueDate - DateTime.Now).TotalDays >= 30;
-
-            var dueDateThirtyDaysAfterIssueDate = (validDueDate - validIssueDate).TotalDays == 30;
-
-            return true;
+            return (validIssueDate - validDueDate).TotalDays == -30;
         }
     }
 }
