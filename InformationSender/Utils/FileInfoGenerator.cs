@@ -15,7 +15,7 @@ namespace InformationSender.Utils
 
                 fileInfo.CreateFromRandomValues();
 
-                if (!FileInfoFormatValidator.IsValid(fileInfo))
+                if (!FileInfoValidator.IsValid(fileInfo))
                 {
                     Console.WriteLine("Generated fileInfo not valid - Continuing");
                     continue;
