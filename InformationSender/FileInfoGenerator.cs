@@ -10,6 +10,7 @@ namespace InformationSender
         public static FileModel[] GenerateFileInfoList()
         {
             var fileInfoList = new FileModel[Random.Next(1000, 10000)];
+
             for (var i = 0; i < fileInfoList.Length; i++)
             {
                 var date = RandomDate();
@@ -35,7 +36,11 @@ namespace InformationSender
                 fileInfo.FileLocation = @"E:\Test\";
                 fileInfo.BatchID = 001;
 
-                if (!FileInfoFormatValidator.IsValidFormat(fileInfo)) continue;
+                if (!FileInfoFormatValidator.IsValidFormat(fileInfo))
+                {
+                    i--;
+                    continue;
+                }
 
                 fileInfoList[i] = fileInfo;
             }
@@ -57,7 +62,7 @@ namespace InformationSender
             return start.AddDays(Random.Next(range));
         }
 
-       private static int Mod10(string kid)
+        private static int Mod10(string kid)
         {
             bool isOne = false;
             int controlNumber = 0;
