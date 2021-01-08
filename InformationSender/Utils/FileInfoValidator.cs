@@ -41,6 +41,8 @@ namespace InformationSender.Utils
                 null, DateTimeStyles.AssumeLocal,
                 out var validIssueDate);
 
+            if ((DateTime.Now - validIssueDate).TotalDays < 30) return false;
+
             DateTime.TryParseExact(dueDate, "dd.MM.yyyy",
                 null, DateTimeStyles.AssumeLocal,
                 out var validDueDate);
