@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace InformationSender
+namespace InformationSender.Utils
 {
     internal static class FileInfoValidator
     {
