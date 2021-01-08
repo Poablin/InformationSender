@@ -52,7 +52,7 @@ namespace InformationSender
 
         private void CreateDummyPDF(string fileName)
         {
-            File.WriteAllText(DirPath + "\\" + fileName, "");
+            File.WriteAllText(DirPath + "\\" + fileName + ".pdf", "");
         }
 
         private void CreateZipFile()
