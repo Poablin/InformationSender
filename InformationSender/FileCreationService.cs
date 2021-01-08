@@ -33,55 +33,21 @@ namespace InformationSender
                     DirPath = OutputPath + owner;
                     Directory.CreateDirectory(DirPath);
 
-                    var doc = new XDocument(new XElement("File"));
-                    doc.Root?.Add(new XElement("Owner", owner));
-                    doc.Root?.Add(new XElement("DocType", "BOF"));
+                    var ownerXElement = new OwnerXElement(owner);
 
                     var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner);
 
                     foreach (var fileInfo in fileInfoToAddIntoXml)
                     {
-                        var fileElement =
-                            new XElement("FileInfo",
-                                new XElement("Filename", fileInfo.Filename),
-                                new XElement("InvoiceNumber", fileInfo.InvoiceNumber),
-                                new XElement("CustomerNumber", fileInfo.CustomerNumber),
-                                new XElement("KID", fileInfo.KID),
-                                new XElement("Name", fileInfo.Name),
-                                new XElement("Addr1", fileInfo.Addr1),
-                                new XElement("ZipCode", fileInfo.ZipCode),
-                                new XElement("ZipName", fileInfo.ZipName),
-                                new XElement("CountryCode", fileInfo.CountryCode),
-                                new XElement("IssueDate", fileInfo.IssueDate),
-                                new XElement("DueDate", fileInfo.DueDate),
-                                new XElement("TotalAmount", fileInfo.TotalAmount));
-                        doc.Root?.Add(fileElement);
+                        ownerXElement.AddFileElement(fileInfo);
                         File.WriteAllText(DirPath + "\\" + fileInfo.Filename, "");
                     }
 
-                    WriteXmlFile(doc, owner);
+                    ownerXElement.WriteXmlFile(owner, DirPath);
                     CreateZipFile();
                     FilesReadyToSend.Add(DirPath + ".zip");
                     Directory.Delete(DirPath, true);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        private void WriteXmlFile(XDocument doc, string filename)
-        {
-            try
-            {
-                var sw = new StringWriter();
-                using (var xw = XmlWriter.Create(DirPath + "\\" + filename  + ".xml"))
-                {
-                    doc.Save(xw);
-                }
-
-                sw.Close();
             }
             catch (Exception e)
             {
