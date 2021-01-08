@@ -37,7 +37,7 @@ namespace InformationSender
                     foreach (var fileInfo in fileInfoToAddIntoXml)
                     {
                         ownerXElement.AddFileElement(fileInfo);
-                        CreateDummyPDF(fileInfo.Filename);
+                        CreateDummyFile(fileInfo.Filename);
                     }
 
                     ownerXElement.WriteXmlFile(owner, DirPath);
@@ -52,7 +52,7 @@ namespace InformationSender
             }
         }
 
-        private void CreateDummyPDF(string fileName)
+        private void CreateDummyFile(string fileName)
         {
             File.WriteAllText(DirPath + "\\" + fileName, "");
         }
