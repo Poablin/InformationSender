@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InformationSender.Utils
+namespace InformationSender
 {
     internal static class FileInfoGenerator
     {
