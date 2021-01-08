@@ -55,10 +55,10 @@ namespace InformationSender
 
         public void CreateFromRandomValues()
         {
-            Owner = Randomisation.RandomNumber(10001, 10003).ToString();
+            Owner = $"{Randomisation.RandomNumber(10001, 10003)}";
             DocType = "BOF";
-            Filename = "2" + Randomisation.RandomNumber(0000000, 9999999) + ".pdf";
-            InvoiceNumber = "1" + Randomisation.RandomNumber(000000, 999999);
+            Filename = $"2{Randomisation.RandomNumber(0000000, 9999999)}.pdf";
+            InvoiceNumber = $"1{Randomisation.RandomNumber(000000, 999999)}";
             CustomerNumber = "000001";
 
             var mod10 = Mod10($"005{InvoiceNumber}");
@@ -66,7 +66,7 @@ namespace InformationSender
 
             Name = Randomisation.RandomString(10);
             Addr1 = Randomisation.RandomString(6);
-            ZipCode = Randomisation.RandomNumber(0000, 9999).ToString();
+            ZipCode = $"{Randomisation.RandomNumber(0000, 9999)}";
             ZipName = Randomisation.RandomString(9);
             CountryCode = "NO";
             TotalAmount = Randomisation.RandomNumber(00000, 99999);

@@ -57,7 +57,7 @@ namespace InformationSender
         {
             try
             {
-                File.WriteAllText(DirPath + "\\" + fileName, "");
+                File.WriteAllText($"{DirPath}\\{fileName}", "");
             }
             catch (Exception e)
             {
@@ -69,7 +69,7 @@ namespace InformationSender
         {
             try
             {
-                ZipFile.CreateFromDirectory(DirPath, DirPath + ".zip");
+                ZipFile.CreateFromDirectory(DirPath, $"{DirPath}.zip");
             }
             catch (Exception e)
             {

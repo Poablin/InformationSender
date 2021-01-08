@@ -40,7 +40,7 @@ namespace InformationSender
             try
             {
                 var sw = new StringWriter();
-                using (var xw = XmlWriter.Create(dirPath + "\\" + filename + ".xml"))
+                using (var xw = XmlWriter.Create($"{dirPath}\\{filename}.xml"))
                 {
                     Doc.Save(xw);
                 }
