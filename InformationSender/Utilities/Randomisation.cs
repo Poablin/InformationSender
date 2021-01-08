@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace InformationSender.Utils
+namespace InformationSender.Utilities
 {
     public static class Randomisation
     {

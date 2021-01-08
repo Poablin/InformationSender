@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using InformationSender.Utils;
+using InformationSender.Utilities;
 
 namespace InformationSender
 {
