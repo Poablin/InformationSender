@@ -47,7 +47,7 @@ namespace InformationSender.Utils
                 null, DateTimeStyles.AssumeLocal,
                 out var validDueDate);
 
-            return (validIssueDate - validDueDate).TotalDays == -30;
+            return (validDueDate - validIssueDate).TotalDays == 30;
         }
     }
 }
