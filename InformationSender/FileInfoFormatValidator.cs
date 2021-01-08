@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -19,7 +20,7 @@ namespace InformationSender
         private static readonly Regex ValidZipCodeRegex =
             new Regex(@"^[\d]{4}$", RegexOptions.Compiled);
 
-        public static bool IsValidFormat(FileModel fileinfo)
+        public static bool IsValid(FileModel fileinfo)
         {
             var filenameCorrectFormat = ValidFilenameRegex.Match(fileinfo.Filename);
             var invoiceNumberCorrectFormat = ValidInvoiceNumberRegex.Match(fileinfo.InvoiceNumber);
@@ -31,7 +32,24 @@ namespace InformationSender
                 && kidCorrectFormat.Success
                 && zipCorrectFormat.Success;
 
-            return match;
+            return match && IsValidDate(fileinfo.IssueDate, fileinfo.DueDate);
+        }
+
+        public static bool IsValidDate(string issueDate, string dueDate)
+        {
+            var issueDateParsed = DateTime.TryParseExact(issueDate, "ddMMyyyy",
+                null, DateTimeStyles.AssumeLocal,
+                out var validIssueDate);
+
+            var dueDateParsed = DateTime.TryParseExact(issueDate, "ddMMyyyy",
+                null, DateTimeStyles.AssumeLocal,
+                out var validDueDate);
+
+            var issueDateMoreThanThirtyDaysAgo = (validIssueDate - DateTime.Now).TotalDays >= 30;
+
+            var dueDateThirtyDaysAfterIssueDate = (validDueDate - validIssueDate).TotalDays == 30;
+
+            return true;
         }
     }
 }

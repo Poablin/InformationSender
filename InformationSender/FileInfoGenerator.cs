@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace InformationSender
@@ -33,11 +34,11 @@ namespace InformationSender
                 fileInfo.BatchID = 001;
 
                 var date = RandomDate();
-                fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
-                date = date.AddDays(30);
                 fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                date = date.AddDays(-30);
+                fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
 
-                if (!FileInfoFormatValidator.IsValidFormat(fileInfo))
+                if (!FileInfoFormatValidator.IsValid(fileInfo))
                 {
                     Console.WriteLine($"Generated fileInfo not valid - Continuing");
                     i--;
@@ -59,8 +60,8 @@ namespace InformationSender
 
         private static DateTime RandomDate()
         {
-            var start = new DateTime(1990, 1, 1);
-            var range = (DateTime.Today.AddDays(-30) - start).Days;
+            var start = new DateTime(1990, 01, 01);
+            var range = (DateTime.Today - start).Days;
             return start.AddDays(Random.Next(range));
         }
 
