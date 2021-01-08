@@ -18,7 +18,7 @@ namespace InformationSender
                 fileInfo.Owner = Random.Next(10001, 10003).ToString();
                 fileInfo.DocType = "BOF";
                 fileInfo.Filename = "2" + Random.Next(0000000, 9999999) + ".pdf";
-                fileInfo.InvoiceNumber = "1" + Random.Next(00000, 99999);
+                fileInfo.InvoiceNumber = "1" + Random.Next(000000, 999999);
                 fileInfo.CustomerNumber = "000001";
 
                 var mod10 = Mod10($"005{fileInfo.InvoiceNumber}");
@@ -38,6 +38,7 @@ namespace InformationSender
 
                 if (!FileInfoFormatValidator.IsValidFormat(fileInfo))
                 {
+                    Console.WriteLine($"Generated fileInfo not valid - Continuing");
                     i--;
                     continue;
                 }
