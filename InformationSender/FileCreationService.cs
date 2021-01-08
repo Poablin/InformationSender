@@ -27,7 +27,7 @@ namespace InformationSender
 
                 foreach (var owner in ownerList)
                 {
-                    DirPath = OutputPath + owner;
+                    DirPath = $"{OutputPath}\\{owner}";
                     if (Directory.Exists(DirPath)) continue;
 
                     Directory.CreateDirectory(DirPath);
