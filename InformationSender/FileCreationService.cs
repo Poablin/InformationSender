@@ -61,7 +61,7 @@ namespace InformationSender
                         File.WriteAllText(DirPath + "\\" + fileInfo.Filename, "");
                     }
 
-                    WriteXmlFile(doc);
+                    WriteXmlFile(doc, owner);
                     CreateZipFile();
                     FilesReadyToSend.Add(DirPath + ".zip");
                     Directory.Delete(DirPath, true);
@@ -73,12 +73,12 @@ namespace InformationSender
             }
         }
 
-        private void WriteXmlFile(XDocument doc)
+        private void WriteXmlFile(XDocument doc, string filename)
         {
             try
             {
                 var sw = new StringWriter();
-                using (var xw = XmlWriter.Create(DirPath + "\\" + _random.Next(999999) + ".xml"))
+                using (var xw = XmlWriter.Create(DirPath + "\\" + filename  + ".xml"))
                 {
                     doc.Save(xw);
                 }
