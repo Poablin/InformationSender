@@ -16,7 +16,7 @@ namespace InformationSender
         private string DirPath { get; set; }
         public List<string> FilesReadyToSend { get; }
 
-        public void CreateFilesFromFileInfo(FileModel[] FileList, string OutputPath)
+        public void CreateFiles(FileModel[] FileList, string OutputPath)
         {
             try
             {
