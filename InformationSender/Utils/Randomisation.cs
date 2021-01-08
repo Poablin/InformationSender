@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace InformationSender.Utils
 {
@@ -11,7 +9,7 @@ namespace InformationSender.Utils
 
         public static int RandomNumber(int minValue, int maxValue)
         {
-           return Random.Next(minValue, maxValue);
+            return Random.Next(minValue, maxValue);
         }
 
         public static string RandomString(int length)

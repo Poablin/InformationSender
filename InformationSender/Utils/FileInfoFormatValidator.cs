@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace InformationSender
 {
-    static class FileInfoFormatValidator
+    internal static class FileInfoFormatValidator
     {
         private static readonly Regex ValidFilenameRegex =
             new Regex(@"^2[\d]{7}.pdf$", RegexOptions.Compiled);
@@ -20,15 +20,17 @@ namespace InformationSender
 
         public static bool IsValid(FileModel fileinfo)
         {
+            if (fileinfo == null) return false;
+
             var filenameCorrectFormat = ValidFilenameRegex.Match(fileinfo.Filename);
             var invoiceNumberCorrectFormat = ValidInvoiceNumberRegex.Match(fileinfo.InvoiceNumber);
             var kidCorrectFormat = ValidKidRegex.Match(fileinfo.KID);
             var zipCorrectFormat = ValidZipCodeRegex.Match(fileinfo.ZipCode);
 
             var correctFormat = filenameCorrectFormat.Success
-                && invoiceNumberCorrectFormat.Success
-                && kidCorrectFormat.Success
-                && zipCorrectFormat.Success;
+                                && invoiceNumberCorrectFormat.Success
+                                && kidCorrectFormat.Success
+                                && zipCorrectFormat.Success;
 
             return correctFormat && IsValidDate(fileinfo.IssueDate, fileinfo.DueDate);
         }

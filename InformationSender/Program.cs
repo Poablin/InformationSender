@@ -1,4 +1,6 @@
-﻿namespace InformationSender
+﻿using InformationSender.Utils;
+
+namespace InformationSender
 {
     internal class Program
     {

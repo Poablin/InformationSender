@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace InformationSender
 {
@@ -23,7 +21,7 @@ namespace InformationSender
             try
             {
                 var ownerList = FileList.Select(x => x.Owner)
-                                        .Distinct();
+                    .Distinct();
 
                 foreach (var owner in ownerList)
                 {

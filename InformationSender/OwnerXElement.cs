@@ -5,16 +5,16 @@ using System.Xml.Linq;
 
 namespace InformationSender
 {
-    class OwnerXElement
+    internal class OwnerXElement
     {
-        private XDocument Doc { get; }
-
         public OwnerXElement(string owner)
         {
             Doc = new XDocument(new XElement("File"));
             Doc.Root?.Add(new XElement("Owner", owner));
             Doc.Root?.Add(new XElement("DocType", "BOF"));
         }
+
+        private XDocument Doc { get; }
 
         public void AddFileElement(FileModel fileInfo)
         {

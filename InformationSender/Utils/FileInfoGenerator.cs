@@ -1,8 +1,6 @@
-﻿using InformationSender.Utils;
-using System;
-using System.Linq;
+﻿using System;
 
-namespace InformationSender
+namespace InformationSender.Utils
 {
     internal static class FileInfoGenerator
     {
@@ -15,9 +13,11 @@ namespace InformationSender
             {
                 var fileInfo = new FileModel();
 
+                fileInfo.CreateFromRandomValues();
+
                 if (!FileInfoFormatValidator.IsValid(fileInfo))
                 {
-                    Console.WriteLine($"Generated fileInfo not valid - Continuing");
+                    Console.WriteLine("Generated fileInfo not valid - Continuing");
                     continue;
                 }
 
