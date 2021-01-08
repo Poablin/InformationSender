@@ -10,8 +10,6 @@ namespace InformationSender
 {
     internal class FileCreationService
     {
-        private readonly Random _random = new Random();
-
         public FileCreationService(FileModel[] fileList, string outputPath)
         {
             OutputPath = outputPath;
