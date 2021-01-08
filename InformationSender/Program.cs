@@ -9,7 +9,7 @@ namespace InformationSender
             var fileInfoList = FileInfoGenerator.GenerateFileInfoList();
 
             var FileCreationService = new FileCreationService();
-            FileCreationService.CreateFilesFromFileInfo(fileInfoList, @"E:\Test\");
+            FileCreationService.CreateFilesFromFileInfo(fileInfoList, @"OutputPath here");
 
             foreach (var file in FileCreationService.FilesReadyToSend)
             {

@@ -20,6 +20,8 @@ namespace InformationSender
         {
             try
             {
+                if (!Directory.Exists(OutputPath)) return;
+
                 var ownerList = FileList.Select(x => x.Owner)
                     .Distinct();
 
