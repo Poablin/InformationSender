@@ -34,9 +34,9 @@ namespace InformationSender
                 fileInfo.BatchID = 001;
 
                 var date = RandomDate();
-                fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                fileInfo.DueDate = date.ToString("dd.MM.yyyy");
                 date = date.AddDays(-30);
-                fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                fileInfo.IssueDate = date.ToString("dd.MM.yyyy");
 
                 if (!FileInfoFormatValidator.IsValid(fileInfo))
                 {
@@ -62,6 +62,7 @@ namespace InformationSender
         {
             var start = new DateTime(1990, 01, 01);
             var range = (DateTime.Today - start).Days;
+
             return start.AddDays(Random.Next(range));
         }
 
