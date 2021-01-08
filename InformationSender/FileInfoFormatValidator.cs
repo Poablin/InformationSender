@@ -27,12 +27,12 @@ namespace InformationSender
             var kidCorrectFormat = ValidKidRegex.Match(fileinfo.KID);
             var zipCorrectFormat = ValidZipCodeRegex.Match(fileinfo.ZipCode);
 
-            var match = filenameCorrectFormat.Success
+            var correctFormat = filenameCorrectFormat.Success
                 && invoiceNumberCorrectFormat.Success
                 && kidCorrectFormat.Success
                 && zipCorrectFormat.Success;
 
-            return match && IsValidDate(fileinfo.IssueDate, fileinfo.DueDate);
+            return correctFormat && IsValidDate(fileinfo.IssueDate, fileinfo.DueDate);
         }
 
         public static bool IsValidDate(string issueDate, string dueDate)
