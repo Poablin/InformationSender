@@ -6,8 +6,8 @@
         {
             var fileInfoList = FileInfoGenerator.GenerateFileInfoList();
 
-            var FileCreationService = new FileCreationService(fileInfoList, @"E:\Test\");
-            FileCreationService.CreateFilesFromFileInfo();
+            var FileCreationService = new FileCreationService();
+            FileCreationService.CreateFilesFromFileInfo(fileInfoList, @"E:\Test\");
 
             foreach (var file in FileCreationService.FilesReadyToSend)
             {

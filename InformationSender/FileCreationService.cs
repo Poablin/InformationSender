@@ -10,19 +10,15 @@ namespace InformationSender
 {
     internal class FileCreationService
     {
-        public FileCreationService(FileModel[] fileList, string outputPath)
+        public FileCreationService()
         {
-            OutputPath = outputPath;
-            FileList = fileList;
             FilesReadyToSend = new List<string>();
         }
 
-        private string OutputPath { get; }
         private string DirPath { get; set; }
         public List<string> FilesReadyToSend { get; }
-        private FileModel[] FileList { get; }
 
-        public void CreateFilesFromFileInfo()
+        public void CreateFilesFromFileInfo(FileModel[] FileList, string OutputPath)
         {
             try
             {

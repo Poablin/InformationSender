@@ -7,7 +7,7 @@ namespace InformationSender
 {
     class OwnerXElement
     {
-        public XDocument Doc { get; }
+        private XDocument Doc { get; }
 
         public OwnerXElement(string owner)
         {
