@@ -6,7 +6,7 @@ namespace InformationSender
     {
         private static void Main(string[] args)
         {
-            var fileInfoList = FileInfoGenerator.GenerateFileInfoList();
+            var fileInfoList = FileInfoGenerator.CreateFileInfoList();
 
             var FileCreationService = new FileCreationService();
             FileCreationService.CreateFilesFromFileInfo(fileInfoList, @"OutputPath here");

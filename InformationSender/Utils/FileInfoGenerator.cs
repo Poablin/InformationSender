@@ -4,7 +4,7 @@ namespace InformationSender.Utils
 {
     internal static class FileInfoGenerator
     {
-        public static FileModel[] GenerateFileInfoList()
+        public static FileModel[] CreateFileInfoList()
         {
             var fileInfoList = new FileModel[Randomisation.RandomNumber(1000, 10000)];
 
