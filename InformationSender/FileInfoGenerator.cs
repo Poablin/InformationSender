@@ -35,7 +35,7 @@ namespace InformationSender
                 fileInfo.FileLocation = @"E:\Test\";
                 fileInfo.BatchID = 001;
 
-                //if (!FileInfoFormatValidator.IsValidFormat(fileInfo)) continue;
+                if (!FileInfoFormatValidator.IsValidFormat(fileInfo)) continue;
 
                 fileInfoList[i] = fileInfo;
             }
