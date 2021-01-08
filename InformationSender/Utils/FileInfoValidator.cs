@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace InformationSender
 {
-    internal static class FileInfoFormatValidator
+    internal static class FileInfoValidator
     {
         private static readonly Regex ValidFilenameRegex =
             new Regex(@"^2[\d]{7}.pdf$", RegexOptions.Compiled);
