@@ -29,8 +29,8 @@ namespace InformationSender
                 {
                     DirPath = OutputPath + owner;
                     if (Directory.Exists(DirPath)) continue;
-                    Directory.CreateDirectory(DirPath);
 
+                    Directory.CreateDirectory(DirPath);
                     var ownerXElement = new OwnerXElement(owner);
 
                     var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner);
