@@ -1,4 +1,4 @@
-﻿using System;
+﻿using InformationSender.Utils;
 
 namespace InformationSender
 {
