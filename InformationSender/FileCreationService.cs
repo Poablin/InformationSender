@@ -43,7 +43,7 @@ namespace InformationSender
 
                     ownerXElement.WriteXmlFile(owner, DirPath);
                     CreateZipFile();
-                    FilesReadyToSend.Add(DirPath + ".zip");
+                    FilesReadyToSend.Add($"{DirPath}.zip");
                     Directory.Delete(DirPath, true);
                 }
             }
