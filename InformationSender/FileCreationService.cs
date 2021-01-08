@@ -54,7 +54,14 @@ namespace InformationSender
 
         private void CreateDummyPdf(string fileName)
         {
-            File.WriteAllText(DirPath + "\\" + fileName, "");
+            try
+            {
+                File.WriteAllText(DirPath + "\\" + fileName, "");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void CreateZipFile()
