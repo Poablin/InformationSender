@@ -13,7 +13,6 @@ namespace InformationSender
 
             for (var i = 0; i < fileInfoList.Length; i++)
             {
-                var date = RandomDate();
                 var fileInfo = new FileModel();
                 fileInfo.Owner = Random.Next(10001, 10003).ToString();
                 fileInfo.DocType = "BOF";
@@ -23,18 +22,20 @@ namespace InformationSender
 
                 var mod10 = Mod10($"005{fileInfo.InvoiceNumber}");
                 fileInfo.KID = $"005{fileInfo.InvoiceNumber}{mod10}";
+
                 fileInfo.Name = RandomString(10);
                 fileInfo.Addr1 = RandomString(6);
                 fileInfo.ZipCode = Random.Next(0000, 9999).ToString();
                 fileInfo.ZipName = RandomString(9);
                 fileInfo.CountryCode = "NO";
-                fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
-
-                date = date.AddDays(30);
-                fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
                 fileInfo.TotalAmount = Random.Next(00000, 99999);
                 fileInfo.FileLocation = @"E:\Test\";
                 fileInfo.BatchID = 001;
+
+                var date = RandomDate();
+                fileInfo.IssueDate = $"{date.Day}.{date.Month}.{date.Year}";
+                date = date.AddDays(30);
+                fileInfo.DueDate = $"{date.Day}.{date.Month}.{date.Year}";
 
                 if (!FileInfoFormatValidator.IsValidFormat(fileInfo))
                 {
