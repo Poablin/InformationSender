@@ -16,15 +16,20 @@ namespace InformationSender
         private static readonly Regex ValidKidRegex =
             new Regex(@"^0051[\d]{6}\d$", RegexOptions.Compiled);
 
+        private static readonly Regex ValidZipCodeRegex =
+            new Regex(@"^[\d]{4}$", RegexOptions.Compiled);
+
         public static bool IsValidFormat(FileModel fileinfo)
         {
             var filenameCorrectFormat = ValidFilenameRegex.Match(fileinfo.Filename);
             var invoiceNumberCorrectFormat = ValidInvoiceNumberRegex.Match(fileinfo.InvoiceNumber);
             var kidCorrectFormat = ValidKidRegex.Match(fileinfo.KID);
+            var zipCorrectFormat = ValidZipCodeRegex.Match(fileinfo.ZipCode);
 
             var match = filenameCorrectFormat.Success
                 && invoiceNumberCorrectFormat.Success
-                && kidCorrectFormat.Success;
+                && kidCorrectFormat.Success
+                && zipCorrectFormat.Success;
 
             return match;
         }
