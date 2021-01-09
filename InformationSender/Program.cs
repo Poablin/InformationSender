@@ -11,7 +11,7 @@
 
             foreach (var file in FileCreationService.FilesReadyToSend)
             {
-                SendFileToServer.Send(file);
+                FileSendingService.Send(file);
             }
         }
     }

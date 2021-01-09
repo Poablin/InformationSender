@@ -4,7 +4,7 @@ using Renci.SshNet;
 
 namespace InformationSender
 {
-    public static class SendFileToServer
+    public static class FileSendingService
     {
         // Enter your host name or IP here
         private static readonly string host = "127.0.0.1";
