@@ -39,9 +39,9 @@ namespace InformationSender
         {
             try
             {
-                using var xw = XmlWriter.Create($"{dirPath}\\{filename}.xml");
-                Doc.Save(xw);
-                xw.Close();
+                using var xWriter = XmlWriter.Create($"{dirPath}\\{filename}.xml");
+                Doc.Save(xWriter);
+                xWriter.Close();
             }
             catch (Exception e)
             {
