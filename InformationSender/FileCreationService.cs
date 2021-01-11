@@ -22,18 +22,17 @@ namespace InformationSender
             {
                 if (!Directory.Exists(OutputPath)) return;
 
-                var ownerList = FileList.Select(x => x.Owner)
-                    .Distinct();
+                var ownerList = FileList.GroupBy(x => x.Owner);
 
                 foreach (var owner in ownerList)
                 {
-                    DirPath = Path.Combine(OutputPath, owner);
+                    DirPath = Path.Combine(OutputPath, owner.Key);
                     if (Directory.Exists(DirPath)) continue;
 
                     Directory.CreateDirectory(DirPath);
-                    var ownerXElement = new OwnerXElement(owner);
+                    var ownerXElement = new OwnerXElement(owner.Key);
 
-                    var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner);
+                    var fileInfoToAddIntoXml = FileList.Where(x => x.Owner == owner.Key);
 
                     foreach (var fileInfo in fileInfoToAddIntoXml)
                     {
@@ -41,7 +40,7 @@ namespace InformationSender
                         CreateDummyPdf(fileInfo.Filename);
                     }
 
-                    ownerXElement.WriteXmlFile(owner, DirPath);
+                    ownerXElement.WriteXmlFile(owner.Key, DirPath);
                     CreateZipFile();
                     FilesReadyToSend.Add($"{DirPath}.zip");
                     Directory.Delete(DirPath, true);
