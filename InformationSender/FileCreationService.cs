@@ -22,12 +22,11 @@ namespace InformationSender
             {
                 if (!Directory.Exists(OutputPath)) return;
 
-                var ownerList = FileList.Select(x => x.Owner)
-                    .Distinct();
+                var ownerList = FileList.GroupBy(x => x.Owner);
 
                 foreach (var owner in ownerList)
                 {
-                    DirPath = $"{OutputPath}\\{owner}";
+                    DirPath = Path.Combine(OutputPath, owner);
                     if (Directory.Exists(DirPath)) continue;
 
                     Directory.CreateDirectory(DirPath);

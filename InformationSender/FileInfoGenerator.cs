@@ -1,24 +1,21 @@
 ﻿using InformationSender.Utilities;
+using System.Collections.Generic;
 
 namespace InformationSender
 {
-    internal static class FileInfoGenerator
+    internal class FileInfoGenerator
     {
-        public static FileModel[] CreateFileInfoList()
+        public List<FileModel> CreateFileInfoList()
         {
-            var fileInfoList = new FileModel[Randomisation.RandomNumber(1000, 10000)];
+            var fileInfoList = new List<FileModel>();
 
-            var count = 0;
-            while (count < fileInfoList.Length)
+            for (var i = 0; i < Randomisation.RandomNumber(1000, 10000), i++)
             {
                 var fileInfo = new FileModel();
 
-                fileInfo.CreateFromRandomValues();
-
                 if (!FileInfoValidator.IsValid(fileInfo)) continue;
 
-                fileInfoList[count] = fileInfo;
-                count++;
+                fileInfoList.Add(fileInfo);
             }
 
             return fileInfoList;
