@@ -9,7 +9,7 @@ namespace InformationSender
         {
             var fileInfoList = new List<FileModel>();
 
-            for (var i = 0; i < Randomisation.RandomNumber(1000, 10000), i++)
+            for (var i = 0; i < Randomisation.RandomNumber(1000, 10000); i++)
             {
                 var fileInfo = new FileModel();
 
