@@ -19,10 +19,7 @@ namespace InformationSender
 
                 if (!fileInfoValidator.IsValid(fileInfo)) continue;
 
-                fileInfoValidator.AddUniqueStrings(fileInfo);
-
                 fileInfoList.Add(fileInfo);
-
                 count++;
             }
 
