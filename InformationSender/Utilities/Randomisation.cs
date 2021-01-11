@@ -21,7 +21,7 @@ namespace InformationSender.Utilities
 
         public static DateTime RandomDate()
         {
-            var start = new DateTime(0001, 01, 01);
+            var start = new DateTime(1000, 01, 01);
             var range = (DateTime.Today - start).Days;
 
             return start.AddDays(Random.Next(range));

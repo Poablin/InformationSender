@@ -16,13 +16,13 @@ namespace InformationSender
         private string DirPath { get; set; }
         public List<string> FilesReadyToSend { get; }
 
-        public void CreateFiles(FileModel[] FileList, string OutputPath)
+        public void CreateFiles(List<FileModel> FileList, string OutputPath)
         {
             try
             {
                 if (!Directory.Exists(OutputPath)) return;
 
-                var ownerList = FileList.GroupBy(x => x.Owner);
+                var ownerList = FileList.Select(x => x.Owner).Distinct();
 
                 foreach (var owner in ownerList)
                 {
