@@ -79,15 +79,10 @@ namespace InformationSender
                 return false;
             }
 
-            AddUniqueStrings();
-
-            return true;
-        }
-
-        private void AddUniqueStrings()
-        {
             UsedFilenames.Add(FileInfo.Filename);
             UsedInvoiceNumbers.Add(FileInfo.InvoiceNumber);
+
+            return true;
         }
     }
 }
