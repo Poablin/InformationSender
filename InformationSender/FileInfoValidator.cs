@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace InformationSender
 {
-    internal static class FileInfoValidator
+    internal class FileInfoValidator
     {
+        public FileInfoValidator()
+        {
+            UsedFilenames = new List<string>();
+            UsedInvoiceNumbers = new List<string>();
+        }
+
         private static readonly Regex ValidFilenameRegex =
             new Regex(@"^2[\d]{7}.pdf$", RegexOptions.Compiled);
 
@@ -18,24 +25,44 @@ namespace InformationSender
         private static readonly Regex ValidZipCodeRegex =
             new Regex(@"^[\d]{4}$", RegexOptions.Compiled);
 
-        public static bool IsValid(FileModel fileinfo)
+        private readonly List<string> UsedFilenames;
+
+        private readonly List<string> UsedInvoiceNumbers;
+
+        public bool IsValid(FileModel fileInfo)
         {
-            if (fileinfo == null) return false;
+            if (fileInfo == null) return false;
 
-            var filenameCorrectFormat = ValidFilenameRegex.Match(fileinfo.Filename);
-            var invoiceNumberCorrectFormat = ValidInvoiceNumberRegex.Match(fileinfo.InvoiceNumber);
-            var kidCorrectFormat = ValidKidRegex.Match(fileinfo.KID);
-            var zipCorrectFormat = ValidZipCodeRegex.Match(fileinfo.ZipCode);
-
-            var correctFormat = filenameCorrectFormat.Success
-                                && invoiceNumberCorrectFormat.Success
-                                && kidCorrectFormat.Success
-                                && zipCorrectFormat.Success;
-
-            return correctFormat && IsValidDate(fileinfo.IssueDate, fileinfo.DueDate);
+            return IsCorrectFormat(fileInfo) && IsValidDate(fileInfo.IssueDate, fileInfo.DueDate) 
+                && StringNotUsed(fileInfo.Filename, fileInfo.InvoiceNumber);
         }
 
-        public static bool IsValidDate(string issueDate, string dueDate)
+        public bool StringNotUsed(string filename, string invoiceNumber)
+        {
+            if (UsedFilenames.Contains(filename) || UsedInvoiceNumbers.Contains(invoiceNumber))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool IsCorrectFormat(FileModel fileInfo)
+        {
+            var filenameCorrectFormat = ValidFilenameRegex.Match(fileInfo.Filename);
+            var invoiceNumberCorrectFormat = ValidInvoiceNumberRegex.Match(fileInfo.InvoiceNumber);
+            var kidCorrectFormat = ValidKidRegex.Match(fileInfo.KID);
+            var zipCorrectFormat = ValidZipCodeRegex.Match(fileInfo.ZipCode);
+
+            var correctFormat = filenameCorrectFormat.Success
+                && invoiceNumberCorrectFormat.Success 
+                && kidCorrectFormat.Success
+                && zipCorrectFormat.Success;
+
+            return correctFormat;
+        }
+
+        public bool IsValidDate(string issueDate, string dueDate)
         {
             DateTime.TryParseExact(issueDate, "dd.MM.yyyy",
                 null, DateTimeStyles.AssumeLocal,
@@ -48,6 +75,12 @@ namespace InformationSender
                 out var validDueDate);
 
             return (validDueDate - validIssueDate).TotalDays == 30;
+        }
+
+        public void AddUniqueStrings(FileModel fileInfo)
+        {
+            UsedFilenames.Add(fileInfo.Filename);
+            UsedInvoiceNumbers.Add(fileInfo.InvoiceNumber);
         }
     }
 }

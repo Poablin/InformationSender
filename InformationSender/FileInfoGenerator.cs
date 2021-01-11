@@ -8,14 +8,22 @@ namespace InformationSender
         public List<FileModel> CreateFileInfoList()
         {
             var fileInfoList = new List<FileModel>();
+            var fileInfoValidator = new FileInfoValidator();
 
-            for (var i = 0; i < Randomisation.RandomNumber(1000, 10000); i++)
+            var randomNum = Randomisation.RandomNumber(1000, 10000);
+
+            var count = 0;
+            while (count < randomNum)
             {
                 var fileInfo = new FileModel();
 
-                if (!FileInfoValidator.IsValid(fileInfo)) continue;
+                if (!fileInfoValidator.IsValid(fileInfo)) continue;
+
+                fileInfoValidator.AddUniqueStrings(fileInfo);
 
                 fileInfoList.Add(fileInfo);
+
+                count++;
             }
 
             return fileInfoList;
