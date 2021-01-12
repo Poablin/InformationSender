@@ -56,7 +56,7 @@ namespace InformationSender
         {
             try
             {
-                File.WriteAllText($"{DirPath}\\{fileName}", "");
+                File.WriteAllText(Path.Combine(DirPath, fileName), "");
             }
             catch (Exception e)
             {
