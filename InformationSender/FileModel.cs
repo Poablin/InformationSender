@@ -5,12 +5,12 @@ namespace InformationSender
 {
     public class FileModel
     {
-        public FileModel()
+        public FileModel(int uniqueFilenameNumber, int uniqueInvoiceNumber)
         {
             Owner = $"{Randomisation.RandomNumber(10001, 10003)}";
             DocType = "BOF";
-            Filename = $"2{Randomisation.RandomNumber(0000000, 9999999)}.pdf";
-            InvoiceNumber = $"1{Randomisation.RandomNumber(000000, 999999)}";
+            Filename = $"2{uniqueFilenameNumber}.pdf";
+            InvoiceNumber = $"1{uniqueInvoiceNumber}";
             CustomerNumber = "000001";
 
             var mod10 = Mod10($"005{InvoiceNumber}");

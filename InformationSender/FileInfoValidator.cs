@@ -7,12 +7,6 @@ namespace InformationSender
 {
     internal class FileInfoValidator
     {
-        public FileInfoValidator()
-        {
-            UsedFilenames = new List<string>();
-            UsedInvoiceNumbers = new List<string>();
-        }
-
         private static readonly Regex ValidFilenameRegex =
             new Regex(@"^2[\d]{7}.pdf$", RegexOptions.Compiled);
 
@@ -27,19 +21,14 @@ namespace InformationSender
 
         private FileModel FileInfo;
 
-        private readonly List<string> UsedFilenames;
-
-        private readonly List<string> UsedInvoiceNumbers;
-
         public bool IsValid(FileModel fileInfo)
         {
             if (fileInfo == null) return false;
 
             FileInfo = fileInfo;
 
-            return IsCorrectFormat() 
-                && IsValidDate()
-                && StringNotUsed();
+            return IsCorrectFormat()
+                && IsValidDate();
         }
 
         private bool IsCorrectFormat()
@@ -49,7 +38,7 @@ namespace InformationSender
             var kidCorrectFormat = ValidKidRegex.Match(FileInfo.KID);
             var zipCorrectFormat = ValidZipCodeRegex.Match(FileInfo.ZipCode);
 
-            var correctFormat = filenameCorrectFormat.Success 
+            var correctFormat = filenameCorrectFormat.Success
                 && invoiceNumberCorrectFormat.Success
                 && kidCorrectFormat.Success
                 && zipCorrectFormat.Success;
@@ -70,19 +59,6 @@ namespace InformationSender
                 out var validDueDate);
 
             return (validDueDate - validIssueDate).TotalDays == 30;
-        }
-
-        private bool StringNotUsed()
-        {
-            if (UsedFilenames.Contains(FileInfo.Filename) || UsedInvoiceNumbers.Contains(FileInfo.InvoiceNumber))
-            {
-                return false;
-            }
-
-            UsedFilenames.Add(FileInfo.Filename);
-            UsedInvoiceNumbers.Add(FileInfo.InvoiceNumber);
-
-            return true;
         }
     }
 }
