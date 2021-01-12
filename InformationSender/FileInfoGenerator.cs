@@ -9,7 +9,6 @@ namespace InformationSender
         {
             UniqueFilenameNumber = 1000000;
             UniqueInvoiceNumber = 100000;
-            ZipCode = 0000;
         }
         private int UniqueFilenameNumber { get; set; }
         private int UniqueInvoiceNumber { get; set; }

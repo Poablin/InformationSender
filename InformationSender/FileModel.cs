@@ -18,7 +18,7 @@ namespace InformationSender
 
             Name = Randomisation.RandomString(10);
             Addr1 = Randomisation.RandomString(6);
-            ZipCode = $"{Randomisation.RandomNumber(0000, 9999)}";
+            ZipCode = $"{Randomisation.RandomNumber(1000, 9999)}";
             ZipName = Randomisation.RandomString(9);
             CountryCode = "NO";
             TotalAmount = Randomisation.RandomNumber(00000, 99999);

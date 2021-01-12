@@ -32,6 +32,8 @@ namespace InformationSender
                     }
 
                     sftp.Disconnect();
+
+                    return 0;
                 }
             }
             catch (Exception e)
