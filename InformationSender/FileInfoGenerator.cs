@@ -1,4 +1,5 @@
 ﻿using InformationSender.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,17 +22,33 @@ namespace InformationSender
             var fileInfoList = new List<FileModel>(randomNum);
             var fileInfoValidator = new FileInfoValidator();
 
-            for (int i = 0; i < randomNum; i++)
-            {
-                var fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
+            Parallel.For(0, randomNum,
+                index =>
+                {
+                    FileModel fileInfo;
+                    lock (this)
+                    {
+                        fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
+                        UniqueFilenameNumber++;
+                        UniqueInvoiceNumber++;
+                    }
 
-                if (!fileInfoValidator.IsValid(fileInfo)) continue;
+                    if (!fileInfoValidator.IsValid(fileInfo)) return;
 
-                UniqueFilenameNumber++;
-                UniqueInvoiceNumber++;
+                    fileInfoList.Add(fileInfo);
+                });
 
-                fileInfoList.Add(fileInfo);
-            }
+            //for (int i = 0; i < randomNum; i++)
+            //{
+            //    var fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
+
+            //    if (!fileInfoValidator.IsValid(fileInfo)) continue;
+
+            //    UniqueFilenameNumber++;
+            //    UniqueInvoiceNumber++;
+
+            //    fileInfoList.Add(fileInfo);
+            //}
 
             return fileInfoList;
         }
