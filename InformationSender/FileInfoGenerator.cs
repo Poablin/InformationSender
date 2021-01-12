@@ -38,18 +38,6 @@ namespace InformationSender
                     fileInfoList.Add(fileInfo);
                 });
 
-            //for (int i = 0; i < randomNum; i++)
-            //{
-            //    var fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
-
-            //    if (!fileInfoValidator.IsValid(fileInfo)) continue;
-
-            //    UniqueFilenameNumber++;
-            //    UniqueInvoiceNumber++;
-
-            //    fileInfoList.Add(fileInfo);
-            //}
-
             return fileInfoList;
         }
     }
