@@ -22,21 +22,17 @@ namespace InformationSender
             var fileInfoList = new List<FileModel>(randomNum);
             var fileInfoValidator = new FileInfoValidator();
 
-            Parallel.For(0, randomNum,
-                index =>
-                {
-                    FileModel fileInfo;
-                    lock (this)
-                    {
-                        fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
-                        UniqueFilenameNumber++;
-                        UniqueInvoiceNumber++;
-                    }
+            for (int i = 0; i < randomNum; i++)
+            {
+                var fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
 
-                    if (!fileInfoValidator.IsValid(fileInfo)) return;
+                if (!fileInfoValidator.IsValid(fileInfo)) continue;
 
-                    fileInfoList.Add(fileInfo);
-                });
+                UniqueFilenameNumber++;
+                UniqueInvoiceNumber++;
+
+                fileInfoList.Add(fileInfo);
+            }
 
             return fileInfoList;
         }
