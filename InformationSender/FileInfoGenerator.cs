@@ -12,7 +12,6 @@ namespace InformationSender
         }
         private int UniqueFilenameNumber { get; set; }
         private int UniqueInvoiceNumber { get; set; }
-        private int ZipCode { get; set; }
 
         public List<FileModel> CreateFileInfoList()
         {
