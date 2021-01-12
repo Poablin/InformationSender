@@ -1,5 +1,6 @@
 ﻿using InformationSender.Utilities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace InformationSender
 {
@@ -20,7 +21,7 @@ namespace InformationSender
             var fileInfoList = new List<FileModel>(randomNum);
             var fileInfoValidator = new FileInfoValidator();
 
-            while (fileInfoList.Count < fileInfoList.Capacity)
+            for (int i = 0; i < randomNum; i++)
             {
                 var fileInfo = new FileModel(UniqueFilenameNumber, UniqueInvoiceNumber);
 
